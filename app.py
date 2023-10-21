@@ -4,6 +4,7 @@ import string
 from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
+from PIL import Image
 
 ps = PorterStemmer()
 
@@ -18,7 +19,6 @@ def transform_text(text):
     for i in text:
         if i.isalnum():
             y.append(i)
-
     text = y[:]
     y.clear()
 
@@ -37,8 +37,9 @@ def transform_text(text):
 tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
 model = pickle.load(open('model.pkl', 'rb'))
 
-st.title("Spam SMS/EMAIL")
-st.image("https://img.icons8.com/material-outlined/24/000000/email.png", use_column_width=False)
+st.title("Email/SMS Verification Spam")
+image = Image.open("sms.png")
+st.image(image, caption="SMS Icon", use_column_width=True)
 
 input_sms = st.text_area("Enter the message")
 
@@ -51,6 +52,8 @@ if st.button('Predict'):
     result = model.predict(vector_input)[0]
     # 4. Display
     if result == 1:
-        st.header("Spam")
+        st.header("Spam", "red")
     else:
-        st.header("Not Spam")
+        st.header("Not Spam", "green")
+
+st.text("© 2023 Dakouky ElMestapha.")
