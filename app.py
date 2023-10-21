@@ -37,8 +37,8 @@ def transform_text(text):
 tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
 model = pickle.load(open('model.pkl', 'rb'))
 
-st.title("Spam SMS/EMAIL")
-st.image("https://img.icons8.com/material-outlined/24/000000/email.png", use_column_width=False)
+st.title("Email/SMS Verification Spam")
+st.image(image, caption="SMS Icon", use_column_width=True)
 
 input_sms = st.text_area("Enter the message")
 
