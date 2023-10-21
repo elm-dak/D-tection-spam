@@ -9,6 +9,7 @@ ps = PorterStemmer()
 
 nltk.download('punkt')
 nltk.download('stopwords')
+
 def transform_text(text):
     text = text.lower()
     text = nltk.word_tokenize(text)
@@ -33,15 +34,15 @@ def transform_text(text):
 
     return " ".join(y)
 
-tfidf = pickle.load(open('vectorizer.pkl','rb'))
-model = pickle.load(open('model.pkl','rb'))
+tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
-st.title("Email/SMS Spam Classifier")
+st.title("Spam SMS/EMAIL")
+st.image("https://img.icons8.com/material-outlined/24/000000/email.png", use_column_width=False)
 
 input_sms = st.text_area("Enter the message")
 
 if st.button('Predict'):
-
     # 1. preprocess
     transformed_sms = transform_text(input_sms)
     # 2. vectorize
